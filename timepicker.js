@@ -495,6 +495,13 @@ Timepicker.Clock = React.createClass({
 
 if (typeof module === 'object' && module.exports) {
     module.exports = Timepicker;
-} else {
-    this.Timepicker = Timepicker;
+} else if (typeof System !== 'undefined') {
+    System.set(
+        System.normalizeSync('{universe:react-timepicker}'),
+        System.newModule({ Timepicker: Timepicker, default: Timepicker })
+    );
+} else if (typeof Meteor === 'object') {
+    _TimePicker = TimePicker;
+} else if (typeof window === 'object') {
+    window.Timepicker = Timepicker;
 }

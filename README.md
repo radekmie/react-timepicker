@@ -18,7 +18,7 @@ npm install react-timepicker
 Using [Meteor][]
 
 ```sh
-meteor add universe:react-clock-picker
+meteor add universe:react-timepicker
 ```
 
 ### Usage
