@@ -1,5 +1,9 @@
 'use strict';
 
+if (typeof module === 'object' && module.exports) {
+    var React = require('react');
+}
+
 var Timepicker = React.createClass({
     displayName: 'Timepicker',
 
