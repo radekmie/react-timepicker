@@ -2,7 +2,7 @@
 `Timepicker` is a [React]() timepicker component that looks like Android KitKat one.
 
 ### [Demo][]
-![Timepicker](timepicker.png)
+![Timepicker](https://raw.githubusercontent.com/radekmie/react-timepicker/master/timepicker.png)
 
 ### Dependencies
 
