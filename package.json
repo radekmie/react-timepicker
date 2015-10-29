@@ -1,0 +1,39 @@
+{
+    "name":   "react-timepicker",
+    "author": "Radosław Miernik",
+
+    "license": "MIT",
+
+    "version": "1.0.0",
+    "description": "React timepicker in Android KitKat style",
+
+    "main": "timepicker.js",
+
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/radekmie/react-timepicker"
+    },
+
+    "bugs": {
+        "url": "https://github.com/radekmie/react-timepicker/issues"
+    },
+
+    "peerDependencies": {
+        "react": ">= 0.12.0"
+    },
+
+    "keywords": [
+        "android",
+
+        "svg",
+
+        "react",
+        "reactjs",
+        "react-component",
+
+        "time",
+        "timepicker",
+        "time picker",
+        "time-picker"
+    ]
+}

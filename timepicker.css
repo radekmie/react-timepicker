@@ -1,0 +1,99 @@
+.timepicker-bubble {
+    cursor: pointer;
+}
+
+.timepicker-bubble circle {
+    r: 15;
+
+    opacity: 0.75;
+    fill: #79C7FF;
+
+    transition: fill 250ms linear, opacity 250ms linear;
+}
+
+.timepicker-bubble.small circle {
+    r: 0;
+
+    fill: none;
+
+    transition-delay: 0ms;
+    transition-property: r;
+    transition-duration: 250ms;
+    transition-timing-function: linear;
+}
+
+.timepicker-bubble.small.active circle {
+    r: 5;
+
+    transition-delay:    250ms;
+    transition-duration: 100ms;
+}
+
+.timepicker-bubble.small circle + circle {
+    r: 10;
+
+    fill: transparent;
+}
+
+.timepicker-bubble:hover circle,
+.timepicker-bubble.active circle {
+    opacity: 1;
+    fill: #3CAEFF;
+}
+
+.timepicker-bubble text {
+    font-family: monospace;
+
+    fill: #ffffff;
+
+    text-anchor:        middle;
+    alignment-baseline: middle;
+}
+
+.timepicker-hand {
+    stroke: #3CAEFF;
+    stroke-width: 5;
+    stroke-linecap: round;
+
+    opacity: 0.25;
+
+    transition-duration: 250ms;
+    transition-timing-function: linear;
+}
+
+.timepicker-invisible {
+    opacity: 0;
+    transform: scale(0.75);
+    transform-origin: center;
+    visibility: hidden;
+    transition: opacity 500ms linear, visibility 500ms linear, transform 250ms linear;
+}
+
+.timepicker-visible {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: center;
+    visibility: visible;
+    transition: opacity 500ms linear, visibility 500ms linear;
+}
+
+.timepicker-info {
+    text-align: center;
+
+    font-size:   2em;
+    line-height: 2em;
+    font-weight: bold;
+
+    margin: 0;
+
+    color: #BAC0C5;
+}
+
+.timepicker-info-digits {
+    cursor: pointer;
+    transition: color 250ms linear;
+}
+
+.timepicker-info-digits.active {
+    color: #3CAEFF;
+}

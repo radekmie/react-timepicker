@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Timepicker</title>
+
+        <link rel="stylesheet" href="../timepicker.css" />
+        <style>
+            html {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                 -khtml-user-select: none;
+                   -moz-user-select: none;
+                    -ms-user-select: none;
+                        user-select: none;
+            }
+
+            .timepicker {
+                position: absolute;
+
+                top:  50%;
+                left: 50%;
+
+                transform: translateX(-50%) translateY(-50%);
+            }
+        </style>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.1/react.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.1/react-dom.js"></script>
+        <script src="../timepicker.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var root = document.createElement('div');
+
+                document.body.appendChild(root);
+
+                ReactDOM.render(React.createElement(Timepicker, {
+                    hours:   new Date().getHours(),
+                    minutes: new Date().getMinutes()
+                }), root);
+            });
+        </script>
+    </head>
+</html>
