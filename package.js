@@ -1,6 +1,6 @@
 Package.describe({
     name: 'universe:react-timepicker',
-    version: '1.1.0',
+    version: '1.1.1',
     documentation: 'README.md',
     summary: 'React timepicker in Android KitKat style',
     git: 'git@github.com:radekmie/react-timepicker.git'

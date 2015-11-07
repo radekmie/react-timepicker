@@ -44,9 +44,9 @@ ReactDOM.render(<TimepickerExample />, document.getElementById('timepicker-examp
 
 ### Prop Values
 #### mode
-`React.PropTypes.any`
+`React.PropTypes.bool`
 
-Initial mode - `Timepicker.MODE_HOURS` or `Timepicker.MODE_MINUTES` **(default: `Timepicker.MODE_HOURS`)**.
+Initial mode - `Timepicker.HOURS` or `Timepicker.MINUTES` **(default: `Timepicker.HOURS`)**.
 
 #### size
 `React.PropTypes.number`

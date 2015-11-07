@@ -8,12 +8,12 @@ var Timepicker = React.createClass({
     displayName: 'Timepicker',
 
     statics: {
-        MODE_HOURS:   true,
-        MODE_MINUTES: false
+        HOURS:   true,
+        MINUTES: false
     },
 
     // propTypes: {
-    //     mode: React.PropTypes.any,
+    //     mode: React.PropTypes.bool,
 
     //     size:   React.PropTypes.number,
     //     radius: React.PropTypes.number,
@@ -29,7 +29,7 @@ var Timepicker = React.createClass({
 
     getDefaultProps: function () {
         return {
-            mode: this.MODE_HOURS,
+            mode: this.HOURS,
 
             hours:   0,
             minutes: 0,
@@ -100,7 +100,7 @@ Timepicker.Info = React.createClass({
     displayName: 'Info',
 
     // propTypes: {
-    //     mode: React.PropTypes.any.isRequired,
+    //     mode: React.PropTypes.bool.isRequired,
 
     //     size: React.PropTypes.number.isRequired,
 
@@ -124,7 +124,7 @@ Timepicker.Info = React.createClass({
             React.createElement(
                 'span',
                 {
-                    className: 'timepicker-info-digits' + (mode === Timepicker.MODE_HOURS ? ' active' : ''),
+                    className: 'timepicker-info-digits' + (mode === Timepicker.HOURS ? ' active' : ''),
 
                     onClick: this.onClickHours
                 },
@@ -134,7 +134,7 @@ Timepicker.Info = React.createClass({
             React.createElement(
                 'span',
                 {
-                    className: 'timepicker-info-digits' + (mode === Timepicker.MODE_MINUTES ? ' active' : ''),
+                    className: 'timepicker-info-digits' + (mode === Timepicker.MINUTES ? ' active' : ''),
 
                     onClick: this.onClickMinutes
                 },
@@ -145,13 +145,13 @@ Timepicker.Info = React.createClass({
 
     onClickHours: function () {
         if (this.props.onChangeMode) {
-            this.props.onChangeMode(Timepicker.MODE_HOURS);
+            this.props.onChangeMode(Timepicker.HOURS);
         }
     },
 
     onClickMinutes: function () {
         if (this.props.onChangeMode) {
-            this.props.onChangeMode(Timepicker.MODE_MINUTES);
+            this.props.onChangeMode(Timepicker.MINUTES);
         }
     }
 });
@@ -160,7 +160,7 @@ Timepicker.Clock = React.createClass({
     displayName: 'Clock',
 
     // propTypes: {
-    //     mode: React.PropTypes.any.isRequired,
+    //     mode: React.PropTypes.bool.isRequired,
 
     //     size:   React.PropTypes.number.isRequired,
     //     radius: React.PropTypes.number.isRequired,
@@ -415,8 +415,8 @@ Timepicker.Clock = React.createClass({
 
                 even: !self.state.even,
                 mode: preventChangeMode
-                    ? self.state.mode === Timepicker.MODE_HOURS ? Timepicker.MODE_HOURS : Timepicker.MODE_MINUTES
-                    : self.state.mode === Timepicker.MODE_HOURS ? Timepicker.MODE_MINUTES : Timepicker.MODE_HOURS
+                    ? self.state.mode === Timepicker.HOURS ? Timepicker.HOURS : Timepicker.MINUTES
+                    : self.state.mode === Timepicker.HOURS ? Timepicker.MINUTES : Timepicker.HOURS
             }, function () {
                 self.onChange();
             });
