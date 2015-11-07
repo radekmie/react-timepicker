@@ -1,53 +1,84 @@
 # react-timepicker
-`Timepicker` is a [React]() timepicker component that looks like Android KitKat one.
+`Timepicker` is a [React](https://facebook.github.io/react/) timepicker component that looks like Android KitKat one.
 
-### [Demo][]
-![Timepicker](https://raw.githubusercontent.com/radekmie/react-timepicker/master/timepicker.png)
+### Example
+[![Timepicker](https://raw.githubusercontent.com/radekmie/react-timepicker/master/timepicker.png)](https://jsfiddle.net/radekm/o7syg3q9/embedded/result/)
 
-### Dependencies
-
-* [React][]
-
-### How To
-Using [npm][]
+### Install
+From [npm](https://www.npmjs.com/package/react-timepicker)
 
 ```sh
-npm install react-timepicker
+npm install react-timepicker --save
 ```
 
-Using [Meteor][]
+From [Atmosphere](https://atmospherejs.com/universe/react-timepicker)
 
 ```sh
 meteor add universe:react-timepicker
 ```
 
-### Usage
-```js
+### Quick Start
+```javascript
+'use strict';
+
+import React      from 'react';
+import ReactDOM   from 'react-dom';
+import Timepicker from 'react-timepicker';
+
 // Remember to include timepicker.css
-<Timepicker {...timepickerOptions} />
+
+class TimepickerExample extends React.Component {
+    onChange (hours, minutes) {
+        // ...
+    },
+
+    render () {
+        return (
+            <Timepicker onChange={this.onChange} />
+        );
+    }
+}
+
+ReactDOM.render(<TimepickerExample />, document.getElementById('timepicker-example'));
 ```
 
-### Options
-```js
-// Everything is optional.
-var timepickerOptions = {
-    mode: Timepicker.MODE_HOURS, // or Timepicker.MODE_MINUTES
+### Prop Values
+#### mode
+`React.PropTypes.any`
 
-    size:   300,
-    radius: 125,
+Initial mode - `Timepicker.MODE_HOURS` or `Timepicker.MODE_MINUTES` **(default: `Timepicker.MODE_HOURS`)**.
 
-    hours:   0,
-    minutes: 0,
+#### size
+`React.PropTypes.number`
 
-    militaryTime: true // 24 hours if true, 12 otherwise
+Clock size in pixels **(default: 300)**.
 
-    onChange: function (hours, minutes) {},
-    onChangeMode: function (mode) {}
-};
-```
+#### radius
+`React.PropTypes.number`
 
-[npm]:    https://npmjs.org/
-[React]:  https://facebook.github.io/react/
-[Meteor]: https://www.meteor.com/
+Clock radius in pixels **(default: 125)**.
 
-[Demo]: https://jsfiddle.net/radekm/o7syg3q9/embedded/result/
+#### hours
+`React.PropTypes.number`
+
+Initial hours **(default: 0)**.
+
+#### minutes
+`React.PropTypes.number`
+
+Initial minutes **(default: 0)**.
+
+#### militaryTime
+`React.PropTypes.bool`
+
+Military (24-hour) time switch **(default: `true`)**.
+
+#### onChange
+`React.PropTypes.func`
+
+Callback function when a hour or a minute is changed. Passes 2 parameters: new hours and minutes.
+
+#### onChangeMode
+`React.PropTypes.func`
+
+Callback function when mode is changed. Passes 1 parameter: new mode.

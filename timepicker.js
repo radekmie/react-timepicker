@@ -259,8 +259,13 @@ Timepicker.Clock = React.createClass({
             hand2.setAttribute('y2', size / 2);
         }
 
-        var hand1Length = Math.hypot(hand1.getAttribute('x1') - hand1.getAttribute('x2'), hand1.getAttribute('y1') - hand1.getAttribute('y2'));
-        var hand2Length = Math.hypot(hand2.getAttribute('x1') - hand2.getAttribute('x2'), hand2.getAttribute('y1') - hand2.getAttribute('y2'));
+        var dx1 = hand1.getAttribute('x1') - hand1.getAttribute('x2');
+        var dy1 = hand1.getAttribute('y1') - hand1.getAttribute('y2');
+        var dx2 = hand2.getAttribute('x1') - hand2.getAttribute('x2');
+        var dy2 = hand2.getAttribute('y1') - hand2.getAttribute('y2');
+
+        var hand1Length = Math.ceil(Math.sqrt(dx1 * dx1 + dy1 * dy1));
+        var hand2Length = Math.ceil(Math.sqrt(dx2 * dx2 + dy2 * dy2));
 
         hand1.style.strokeDasharray  = hand1Length;
         hand2.style.strokeDasharray  = hand2Length;
@@ -465,8 +470,8 @@ Timepicker.Clock = React.createClass({
 
         for (; index <= (militaryTime ? 24 : 12); ++index) {
             positions.push([
-                size / 2 + radius * (militaryTime ? index > 12 ? 1 : 0.65 : 1) * Math.cos((index % 12 / 6 - 0.5) * Math.PI),
-                size / 2 + radius * (militaryTime ? index > 12 ? 1 : 0.65 : 1) * Math.sin((index % 12 / 6 - 0.5) * Math.PI)
+                Math.round(size / 2 + radius * (militaryTime ? index > 12 ? 1 : 0.65 : 1) * Math.cos((index % 12 / 6 - 0.5) * Math.PI)),
+                Math.round(size / 2 + radius * (militaryTime ? index > 12 ? 1 : 0.65 : 1) * Math.sin((index % 12 / 6 - 0.5) * Math.PI))
             ]);
         }
 
@@ -484,8 +489,8 @@ Timepicker.Clock = React.createClass({
 
         for (; index < 60; ++index) {
             positions.push([
-                size / 2 + radius * Math.cos((index / 30 - 0.5) * Math.PI),
-                size / 2 + radius * Math.sin((index / 30 - 0.5) * Math.PI)
+                Math.round(size / 2 + radius * Math.cos((index / 30 - 0.5) * Math.PI)),
+                Math.round(size / 2 + radius * Math.sin((index / 30 - 0.5) * Math.PI))
             ]);
         }
 
