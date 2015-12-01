@@ -12,20 +12,20 @@ var Timepicker = React.createClass({
         MINUTES: false
     },
 
-    // propTypes: {
-    //     mode: React.PropTypes.bool,
+    propTypes: {
+        mode: React.PropTypes.bool,
 
-    //     size:   React.PropTypes.number,
-    //     radius: React.PropTypes.number,
+        size:   React.PropTypes.number,
+        radius: React.PropTypes.number,
 
-    //     hours:   React.PropTypes.number,
-    //     minutes: React.PropTypes.number,
+        hours:   React.PropTypes.number,
+        minutes: React.PropTypes.number,
 
-    //     militaryTime: React.PropTypes.bool,
+        militaryTime: React.PropTypes.bool,
 
-    //     onChange:     React.PropTypes.func,
-    //     onChangeMode: React.PropTypes.func
-    // },
+        onChange:     React.PropTypes.func,
+        onChangeMode: React.PropTypes.func
+    },
 
     getDefaultProps: function () {
         return {
@@ -97,18 +97,18 @@ var Timepicker = React.createClass({
 });
 
 Timepicker.Info = React.createClass({
-    displayName: 'Info',
+    displayName: 'Timepicker.Info',
 
-    // propTypes: {
-    //     mode: React.PropTypes.bool.isRequired,
+    propTypes: {
+        mode: React.PropTypes.bool.isRequired,
 
-    //     size: React.PropTypes.number.isRequired,
+        size: React.PropTypes.number.isRequired,
 
-    //     hours:   React.PropTypes.number.isRequired,
-    //     minutes: React.PropTypes.number.isRequired,
+        hours:   React.PropTypes.number.isRequired,
+        minutes: React.PropTypes.number.isRequired,
 
-    //     onChangeMode: React.PropTypes.func
-    // },
+        onChangeMode: React.PropTypes.func
+    },
 
     render: function () {
         var props = this.props;
@@ -157,22 +157,22 @@ Timepicker.Info = React.createClass({
 });
 
 Timepicker.Clock = React.createClass({
-    displayName: 'Clock',
+    displayName: 'Timepicker.Clock',
 
-    // propTypes: {
-    //     mode: React.PropTypes.bool.isRequired,
+    propTypes: {
+        mode: React.PropTypes.bool.isRequired,
 
-    //     size:   React.PropTypes.number.isRequired,
-    //     radius: React.PropTypes.number.isRequired,
+        size:   React.PropTypes.number.isRequired,
+        radius: React.PropTypes.number.isRequired,
 
-    //     hours:   React.PropTypes.number.isRequired,
-    //     minutes: React.PropTypes.number.isRequired,
+        hours:   React.PropTypes.number.isRequired,
+        minutes: React.PropTypes.number.isRequired,
 
-    //     militaryTime: React.PropTypes.bool.isRequired,
+        militaryTime: React.PropTypes.bool.isRequired,
 
-    //     onChange:     React.PropTypes.func,
-    //     onChangeMode: React.PropTypes.func
-    // },
+        onChange:     React.PropTypes.func,
+        onChangeMode: React.PropTypes.func
+    },
 
     getInitialState: function () {
         var props = this.props;
@@ -202,9 +202,7 @@ Timepicker.Clock = React.createClass({
                 positionsHours:   this.calculatePositionsHours(),
                 positionsMinutes: this.calculatePositionsMinutes()
             });
-        }
-
-        if (nextProps.militaryTime !== props.militaryTime) {
+        } else if (nextProps.militaryTime !== props.militaryTime) {
             this.setState({
                 positionsHours: this.calculatePositionsHours()
             });
@@ -500,13 +498,19 @@ Timepicker.Clock = React.createClass({
 
 if (typeof module === 'object' && module.exports) {
     module.exports = Timepicker;
-} else if (typeof System !== 'undefined') {
+}
+
+if (typeof System !== 'undefined') {
     System.set(
         System.normalizeSync('{universe:react-timepicker}'),
         System.newModule({ Timepicker: Timepicker, default: Timepicker })
     );
-} else if (typeof Meteor === 'object') {
+}
+
+if (typeof Meteor === 'object') {
     _TimePicker = TimePicker;
-} else if (typeof window === 'object') {
+}
+
+if (typeof window === 'object') {
     window.Timepicker = Timepicker;
 }
