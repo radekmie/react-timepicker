@@ -1,3 +1,5 @@
+[![npm](https://nodei.co/npm/react-timepicker.png?downloads=true)](https://www.npmjs.com/package/react-timepicker)
+
 # react-timepicker
 `Timepicker` is a [React](https://facebook.github.io/react/) timepicker component that looks like Android KitKat one.
 
@@ -9,12 +11,6 @@ From [npm](https://www.npmjs.com/package/react-timepicker)
 
 ```sh
 npm install react-timepicker --save
-```
-
-From [Atmosphere](https://atmospherejs.com/universe/react-timepicker)
-
-```sh
-meteor add universe:react-timepicker
 ```
 
 ### Quick Start
