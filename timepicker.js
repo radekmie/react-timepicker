@@ -336,7 +336,7 @@ Timepicker.Clock = React.createClass({
                     onMouseUp:   onMouseMove,
                     onMouseMove: onMouseMove
                 },
-                React.createElement('circle', { cx: x, cy: y }),
+                React.createElement('circle', { cx: x, cy: y, r: 15 }),
                 React.createElement(
                     'text',
                     { x: x, y: y },
@@ -378,12 +378,12 @@ Timepicker.Clock = React.createClass({
                     onClick:     onClick,
                     onMouseMove: onMouseMove
                 },
-                React.createElement('circle', { cx: x, cy: y }),
+                React.createElement('circle', { cx: x, cy: y, r: minute % 5 !== 0 ? minutes === minute ? 5 : 0 : 15 }),
                 minute % 5 === 0 ? React.createElement(
                     'text',
                     { x: x, y: y },
                     minute
-                ) : React.createElement('circle', { cx: x, cy: y })
+                ) : React.createElement('circle', { cx: x, cy: y, r: 10 })
             ));
         }
 
