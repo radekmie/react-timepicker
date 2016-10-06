@@ -65,8 +65,8 @@
 
     font-family: monospace;
 
-    text-anchor:        middle;
-    alignment-baseline: middle;
+    text-anchor:       middle;
+    dominant-baseline: middle;
 }
 
 .timepicker-hand {
