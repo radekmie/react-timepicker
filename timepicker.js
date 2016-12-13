@@ -229,8 +229,9 @@ Timepicker.Clock = React.createClass({
         var props = this.props;
         var state = this.state;
 
-        var mode = props.mode;
-        var size = props.size;
+        var mode         = props.mode;
+        var size         = props.size;
+        var militaryTime = props.militaryTime;
 
         var even    = state.even;
         var hours   = state.hours;
@@ -249,8 +250,8 @@ Timepicker.Clock = React.createClass({
         if (!hand1.setAttribute) hand1 = React.findDOMNode ? React.findDOMNode(hand1) : hand1.getDOMNode();
         if (!hand2.setAttribute) hand2 = React.findDOMNode ? React.findDOMNode(hand2) : hand2.getDOMNode();
 
-        hand1.setAttribute('x2', mode ? positionsHours[hours === 0 ? 23 : hours - 1][0] : positionsMinutes[minutes][0]);
-        hand1.setAttribute('y2', mode ? positionsHours[hours === 0 ? 23 : hours - 1][1] : positionsMinutes[minutes][1]);
+        hand1.setAttribute('x2', mode ? positionsHours[hours === 0 ? militaryTime ? 23 : 11 : hours - 1][0] : positionsMinutes[minutes][0]);
+        hand1.setAttribute('y2', mode ? positionsHours[hours === 0 ? militaryTime ? 23 : 11 : hours - 1][1] : positionsMinutes[minutes][1]);
 
         if (previousProps.mode !== mode) {
             hand2.setAttribute('x2', size / 2);

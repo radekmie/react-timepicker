@@ -26,6 +26,7 @@
                 document.body.appendChild(root);
 
                 ReactDOM.render(React.createElement(Timepicker, {
+                    militaryTime: false,
                     hours:   new Date().getHours(),
                     minutes: new Date().getMinutes()
                 }), root);
