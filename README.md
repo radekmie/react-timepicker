@@ -64,6 +64,11 @@ Initial hours **(default: 0)**.
 
 Initial minutes **(default: 0)**.
 
+#### formatNumber
+`React.PropTypes.func.isRequired`
+
+Function formatting numbers **(default: left pad with 0)**
+
 #### militaryTime
 `React.PropTypes.bool`
 

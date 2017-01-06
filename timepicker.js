@@ -21,6 +21,7 @@ var Timepicker = React.createClass({
         hours:   React.PropTypes.number,
         minutes: React.PropTypes.number,
 
+        formatNumber: React.PropTypes.func,
         militaryTime: React.PropTypes.bool,
 
         onChange:     React.PropTypes.func,
@@ -37,7 +38,11 @@ var Timepicker = React.createClass({
             size:   300,
             radius: 125,
 
-            militaryTime: true
+            militaryTime: true,
+
+            formatNumber: function (value) {
+                return value < 10 ? '0' + value : value;
+            }
         };
     },
 
@@ -66,10 +71,11 @@ var Timepicker = React.createClass({
 
         var size         = props.size;
         var radius       = props.radius;
+        var formatNumber = props.formatNumber;
         var militaryTime = props.militaryTime;
 
-        var propsInfo  = { hours: hours, minutes: minutes, mode: mode, size: size, onChangeMode: this.onChangeMode };
-        var propsClock = { hours: hours, minutes: minutes, mode: mode, size: size, onChangeMode: this.onChangeMode, militaryTime: militaryTime, radius: radius, onChange: this.onChange };
+        var propsInfo  = { hours: hours, minutes: minutes, mode: mode, size: size, onChangeMode: this.onChangeMode, formatNumber: formatNumber };
+        var propsClock = { hours: hours, minutes: minutes, mode: mode, size: size, onChangeMode: this.onChangeMode, formatNumber: formatNumber, militaryTime: militaryTime, radius: radius, onChange: this.onChange };
 
         return React.createElement(
             'div',
@@ -107,16 +113,19 @@ Timepicker.Info = React.createClass({
         hours:   React.PropTypes.number.isRequired,
         minutes: React.PropTypes.number.isRequired,
 
+        formatNumber: React.PropTypes.func.isRequired,
+
         onChangeMode: React.PropTypes.func
     },
 
     render: function () {
         var props = this.props;
 
-        var mode    = props.mode;
-        var size    = props.size;
-        var hours   = props.hours;
-        var minutes = props.minutes;
+        var mode         = props.mode;
+        var size         = props.size;
+        var hours        = props.hours;
+        var minutes      = props.minutes;
+        var formatNumber = props.formatNumber;
 
         return React.createElement(
             'p',
@@ -128,7 +137,7 @@ Timepicker.Info = React.createClass({
 
                     onClick: this.onClickHours
                 },
-                hours < 10 ? '0' + hours : hours
+                formatNumber(hours)
             ),
             ':',
             React.createElement(
@@ -138,7 +147,7 @@ Timepicker.Info = React.createClass({
 
                     onClick: this.onClickMinutes
                 },
-                minutes < 10 ? '0' + minutes : minutes
+                formatNumber(minutes)
             )
         );
     },
@@ -168,6 +177,7 @@ Timepicker.Clock = React.createClass({
         hours:   React.PropTypes.number.isRequired,
         minutes: React.PropTypes.number.isRequired,
 
+        formatNumber: React.PropTypes.func.isRequired,
         militaryTime: React.PropTypes.bool.isRequired,
 
         onChange:     React.PropTypes.func,
@@ -307,6 +317,8 @@ Timepicker.Clock = React.createClass({
         var hours     = this.state.hours;
         var positions = this.state.positionsHours;
 
+        var formatNumber = this.props.formatNumber;
+
         var x;
         var y;
 
@@ -341,7 +353,7 @@ Timepicker.Clock = React.createClass({
                 React.createElement(
                     'text',
                     { x: x, y: y },
-                    hour
+                    formatNumber(hour)
                 )
             ));
         }
@@ -352,6 +364,8 @@ Timepicker.Clock = React.createClass({
     renderMinutesBubbles: function () {
         var minutes   = this.state.minutes;
         var positions = this.state.positionsMinutes;
+
+        var formatNumber = this.props.formatNumber;
 
         var x;
         var y;
@@ -383,7 +397,7 @@ Timepicker.Clock = React.createClass({
                 minute % 5 === 0 ? React.createElement(
                     'text',
                     { x: x, y: y },
-                    minute
+                    formatNumber(minute)
                 ) : React.createElement('circle', { cx: x, cy: y, r: 10 })
             ));
         }
