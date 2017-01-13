@@ -67,7 +67,7 @@ Initial minutes **(default: 0)**.
 #### formatNumber
 `React.PropTypes.func.isRequired`
 
-Function formatting numbers **(default: left pad with 0)**
+Function `(number, 'info' | 'clock') => string` formatting numbers **(default: left pad with 0)**
 
 #### militaryTime
 `React.PropTypes.bool`

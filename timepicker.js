@@ -40,7 +40,7 @@ var Timepicker = React.createClass({
 
             militaryTime: true,
 
-            formatNumber: function (value) {
+            formatNumber: function (value/*, mode */) {
                 return value < 10 ? '0' + value : value;
             }
         };
@@ -137,7 +137,7 @@ Timepicker.Info = React.createClass({
 
                     onClick: this.onClickHours
                 },
-                formatNumber(hours)
+                formatNumber(hours, 'info')
             ),
             ':',
             React.createElement(
@@ -147,7 +147,7 @@ Timepicker.Info = React.createClass({
 
                     onClick: this.onClickMinutes
                 },
-                formatNumber(minutes)
+                formatNumber(minutes, 'info')
             )
         );
     },
@@ -353,7 +353,7 @@ Timepicker.Clock = React.createClass({
                 React.createElement(
                     'text',
                     { x: x, y: y },
-                    formatNumber(hour)
+                    formatNumber(hour, 'clock')
                 )
             ));
         }
@@ -397,7 +397,7 @@ Timepicker.Clock = React.createClass({
                 minute % 5 === 0 ? React.createElement(
                     'text',
                     { x: x, y: y },
-                    formatNumber(minute)
+                    formatNumber(minute, 'clock')
                 ) : React.createElement('circle', { cx: x, cy: y, r: 10 })
             ));
         }
