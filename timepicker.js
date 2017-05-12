@@ -61,6 +61,18 @@ var Timepicker = React.createClass({
         };
     },
 
+    componentWillReceiveProps: function (nextProps) {
+        var prevProps = this.props;
+
+        var diff = {};
+
+        if (prevProps.mode    !== nextProps.mode)    diff.mode    = nextProps.mode;
+        if (prevProps.hours   !== nextProps.hours)   diff.hours   = nextProps.hours;
+        if (prevProps.minutes !== nextProps.minutes) diff.minutes = nextProps.minutes;
+
+        this.setState(diff);
+    },
+
     render: function () {
         var state = this.state;
         var props = this.props;
