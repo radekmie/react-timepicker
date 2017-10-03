@@ -87,7 +87,7 @@ Timepicker.defaultProps = {
     hours: 0,
     militaryTime: true,
     minutes: 0,
-    mode: HOURS,
+    mode: Timepicker.HOURS,
     radius: 125,
     size: 300
 };
