@@ -1,39 +1,41 @@
 {
-    "name":   "react-timepicker",
-    "author": "Radosław Miernik",
-
-    "license": "MIT",
-
-    "version": "1.3.1",
-    "description": "React timepicker in Android KitKat style",
-
-    "main": "timepicker.js",
-
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/radekmie/react-timepicker"
-    },
-
-    "bugs": {
-        "url": "https://github.com/radekmie/react-timepicker/issues"
-    },
-
-    "peerDependencies": {
-        "react": ">= 0.12.0"
-    },
-
-    "keywords": [
-        "android",
-
-        "svg",
-
-        "react",
-        "reactjs",
-        "react-component",
-
-        "time",
-        "timepicker",
-        "time picker",
-        "time-picker"
-    ]
+  "name": "react-timepicker",
+  "version": "2.0.0-alpha.1",
+  "license": "MIT",
+  "author": "Radosław Miernik",
+  "main": "timepicker.js",
+  "jsnext:main": "timepicker.es6.js",
+  "description": "React timepicker in Android KitKat style",
+  "repository": "https://github.com/radekmie/react-timepicker",
+  "bugs": "https://github.com/radekmie/react-timepicker/issues",
+  "keywords": [
+    "android",
+    "svg",
+    "react",
+    "reactjs",
+    "react-component",
+    "time",
+    "timepicker",
+    "time picker",
+    "time-picker"
+  ],
+  "files": [
+    "timepicker.css",
+    "timepicker.es6.js",
+    "timepicker.js"
+  ],
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.9",
+    "babel-preset-env": "1.6.0",
+    "babel-preset-minify": "0.2.0",
+    "babel-preset-react": "6.24.1"
+  },
+  "peerDependencies": {
+    "prop-types": ">= 15.5.7",
+    "react": ">= 15.5.0"
+  },
+  "scripts": {
+    "build": "babel --compact --minified timepicker.es6.js > timepicker.js"
+  }
 }
