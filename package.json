@@ -19,11 +19,7 @@
     "time picker",
     "time-picker"
   ],
-  "files": [
-    "timepicker.css",
-    "timepicker.es6.js",
-    "timepicker.js"
-  ],
+  "files": ["timepicker.css", "timepicker.es6.js", "timepicker.js"],
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.9",
