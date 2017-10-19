@@ -9,7 +9,6 @@
   ],
   "presets": [
     "env",
-    "minify",
     "react"
   ]
 }
