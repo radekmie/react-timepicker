@@ -190,8 +190,8 @@ export class Clock extends React.Component {
         if (previousProps.mode === mode && previousState.hours === hours && previousState.minutes === minutes)
             return;
 
-        const hand1 = even ? this.refs.hand1 : this.refs.hand2;
-        const hand2 = even ? this.refs.hand2 : this.refs.hand1;
+        const hand1 = even ? this.hand1 : this.hand2;
+        const hand2 = even ? this.hand2 : this.hand1;
 
         hand1.setAttribute('x2', mode ? positionsHours[hours === 0 ? militaryTime ? 23 : 11 : hours - 1][0] : positionsMinutes[minutes][0]);
         hand1.setAttribute('y2', mode ? positionsHours[hours === 0 ? militaryTime ? 23 : 11 : hours - 1][1] : positionsMinutes[minutes][1]);
@@ -229,7 +229,7 @@ export class Clock extends React.Component {
         const mode = this.state.mode;
 
         return (
-            <svg height={height} width={width}>
+            <svg height={size} width={size}>
                 <line ref={this.onHand1} className="timepicker-hand" x1={size / 2} y1={size / 2} x2={size / 2} y2={size / 2} />
                 <line ref={this.onHand2} className="timepicker-hand" x1={size / 2} y1={size / 2} x2={size / 2} y2={size / 2} />
 
@@ -245,7 +245,7 @@ export class Clock extends React.Component {
 
     renderHoursBubbles () {
         const {formatNumber} = this.props;
-        const {hours, positions} = this.state;
+        const {hours, positionsHours: positions} = this.state;
 
         const bubbles = [];
 
@@ -261,7 +261,7 @@ export class Clock extends React.Component {
             bubbles.push(
                 <g
                     className={`timepicker-bubble${hours === hour ? ' active' : ''}`}
-                    key={minute}
+                    key={index}
                     onClick={onClick}
                     onMouseMove={onMouseMove}
                     onMouseUp={onMouseMove}
@@ -280,7 +280,7 @@ export class Clock extends React.Component {
 
     renderMinutesBubbles () {
         const {formatNumber} = this.props;
-        const {minutes, positions} = this.state;
+        const {minutes, positionsMinutes: positions} = this.state;
 
         const bubbles = [];
 
@@ -328,11 +328,11 @@ export class Clock extends React.Component {
                 return;
 
             this.setState({
-                even: !self.state.even,
+                even: !this.state.even,
                 hours,
                 mode: preventChangeMode
-                    ? self.state.mode === Timepicker.HOURS ? Timepicker.HOURS : Timepicker.MINUTES
-                    : self.state.mode === Timepicker.HOURS ? Timepicker.MINUTES : Timepicker.HOURS
+                    ? this.state.mode === Timepicker.HOURS ? Timepicker.HOURS : Timepicker.MINUTES
+                    : this.state.mode === Timepicker.HOURS ? Timepicker.MINUTES : Timepicker.HOURS
             }, () => this.onChange());
         };
     }
