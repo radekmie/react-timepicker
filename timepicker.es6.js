@@ -151,8 +151,6 @@ export class Clock extends React.Component {
             positionsMinutes: this.calculatePositionsMinutes()
         };
 
-        this.onHand1 = this.onHand1.bind(this);
-        this.onHand2 = this.onHand2.bind(this);
     }
 
     componentWillReceiveProps ({hours, militaryTime, minutes, mode, radius, size}) {
@@ -187,11 +185,11 @@ export class Clock extends React.Component {
         const {militaryTime, mode, size} = this.props;
         const {even, hours, minutes, positionsHours, positionsMinutes} = this.state;
 
-        if (previousProps.mode === mode && previousState.hours === hours && previousState.minutes === minutes)
+        if ((previousProps.mode === mode && previousState.hours === hours && previousState.minutes === minutes) || (!this.hand1 || !this.hand2))
             return;
 
-        const hand1 = even ? this.refs.hand1 : this.refs.hand2;
-        const hand2 = even ? this.refs.hand2 : this.refs.hand1;
+        const hand1 = even ? this.hand1 : this.hand2;
+        const hand2 = even ? this.hand2 : this.hand1;
 
         hand1.setAttribute('x2', mode ? positionsHours[hours === 0 ? militaryTime ? 23 : 11 : hours - 1][0] : positionsMinutes[minutes][0]);
         hand1.setAttribute('y2', mode ? positionsHours[hours === 0 ? militaryTime ? 23 : 11 : hours - 1][1] : positionsMinutes[minutes][1]);
@@ -229,9 +227,9 @@ export class Clock extends React.Component {
         const mode = this.state.mode;
 
         return (
-            <svg height={height} width={width}>
-                <line ref={this.onHand1} className="timepicker-hand" x1={size / 2} y1={size / 2} x2={size / 2} y2={size / 2} />
-                <line ref={this.onHand2} className="timepicker-hand" x1={size / 2} y1={size / 2} x2={size / 2} y2={size / 2} />
+            <svg height={size} width={size}>
+                <line ref={el => this.hand1 = el} className="timepicker-hand" x1={size / 2} y1={size / 2} x2={size / 2} y2={size / 2} />
+                <line ref={el => this.hand2 = el} className="timepicker-hand" x1={size / 2} y1={size / 2} x2={size / 2} y2={size / 2} />
 
                 <g className={`timepicker-${mode ? 'visible' : 'invisible'}`}>
                     {this.renderHoursBubbles()}
@@ -245,13 +243,14 @@ export class Clock extends React.Component {
 
     renderHoursBubbles () {
         const {formatNumber} = this.props;
-        const {hours, positions} = this.state;
-
+        const {hours, positionsHours} = this.state;
+        
+        
         const bubbles = [];
 
-        for (let index = 0; index < positions.length; ++index) {
-            const x = positions[index][0];
-            const y = positions[index][1];
+        for (let index = 0; index < positionsHours.length; ++index) {
+            const x = positionsHours[index][0];
+            const y = positionsHours[index][1];
 
             const hour = (index + 1) % 24;
 
@@ -261,7 +260,7 @@ export class Clock extends React.Component {
             bubbles.push(
                 <g
                     className={`timepicker-bubble${hours === hour ? ' active' : ''}`}
-                    key={minute}
+                    key={index}
                     onClick={onClick}
                     onMouseMove={onMouseMove}
                     onMouseUp={onMouseMove}
@@ -280,13 +279,13 @@ export class Clock extends React.Component {
 
     renderMinutesBubbles () {
         const {formatNumber} = this.props;
-        const {minutes, positions} = this.state;
+        const {minutes, positionsMinutes} = this.state;
 
         const bubbles = [];
 
-        for (let minute = 0; minute < positions.length; ++minute) {
-            const x = positions[minute][0];
-            const y = positions[minute][1];
+        for (let minute = 0; minute < positionsMinutes.length; ++minute) {
+            const x = positionsMinutes[minute][0];
+            const y = positionsMinutes[minute][1];
 
             const onClick = this.onClickMinute(minute);
             const onMouseMove = this.onMouseMoveMinute(minute);
@@ -323,6 +322,7 @@ export class Clock extends React.Component {
     }
 
     onClickHour (hours) {
+        const self = this
         return (event, preventChangeMode) => {
             if (this.state.hours === hours && preventChangeMode)
                 return;
@@ -344,14 +344,6 @@ export class Clock extends React.Component {
 
             this.setState({minutes: minutes, even: !this.state.even}, () => this.onChange());
         };
-    }
-
-    onHand1 (hand1) {
-        this.hand1 = hand1;
-    }
-
-    onHand2 (hand2) {
-        this.hand2 = hand2;
     }
 
     onMouseMoveHour (hours) {
