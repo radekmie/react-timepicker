@@ -17,11 +17,13 @@ npm install react-timepicker --save
 ```javascript
 'use strict';
 
-import React      from 'react';
-import ReactDOM   from 'react-dom';
-import Timepicker from 'react-timepicker';
+import React        from 'react';
+import ReactDOM     from 'react-dom';
+import {Timepicker} from 'react-timepicker';
 
 // Remember to include timepicker.css
+// If you can import CSS in JS:
+import 'react-timepicker/timepicker.css';
 
 class TimepickerExample extends React.Component {
     onChange (hours, minutes) {
